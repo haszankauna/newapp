@@ -1,34 +1,11 @@
 import React from 'react'
-import { useState } from 'react'
 import {FaTrashAlt} from 'react-icons/fa'
 
-function Content() {
-    const [items, setItems] = useState([
-        {
-            id:1,
-            checked: true,
-            item: 'One pound bag of cocoa'
-        },
-        {
-            id:2,
-            checked: false,
-            item: 'item2'
-        },
-        {
-            id: 3,
-            checked: false,
-            item: 'item3'
-        }
-    ]);
-
-    const handleCheck = (id) => {
-        const listItems = items.map((item) => item.id === id ? {...item,
-        checked: !item.checked} : item);
-        setItems(listItems);
-    }
+function Content({items, handleCheck, handleDelete}) {
 
   return (
     <main>
+        {items.length ? (
         <ul>
             {items.map((item) => (
                 <li className='item' key={item.id}>
@@ -37,14 +14,21 @@ function Content() {
                     onChange={() => handleCheck(item.id)}
                     checked={item.checked}
                     />
-                    <label>{item.item}</label>
+                    <label
+                    style={(item.checked) ? {textDecoration: 'line-through'} : null}
+                    onDoubleClick={() => handleCheck(item.id)}>
+                    {item.item}</label>
                     <FaTrashAlt
-                    role='button' 
-                    tabIndex='0'
+                      onClick={() => handleDelete(item.id)}
+                      role='button' 
+                      tabIndex='0'
                     />
                 </li>
             ))}
         </ul>
+        ) : (
+            <p style={{marginTop: '2rem'}}> Your list is empty</p>
+        )}
     </main>
   )
 }
