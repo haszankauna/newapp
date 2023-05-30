@@ -6,7 +6,7 @@ function Content() {
     const [items, setItems] = useState([
         {
             id:1,
-            checked: false,
+            checked: true,
             item: 'One pound bag of cocoa'
         },
         {
@@ -20,6 +20,13 @@ function Content() {
             item: 'item3'
         }
     ]);
+
+    const handleCheck = (id) => {
+        const listItems = items.map((item) => item.id === id ? {...item,
+        checked: !item.checked} : item);
+        setItems(listItems);
+    }
+
   return (
     <main>
         <ul>
@@ -27,6 +34,7 @@ function Content() {
                 <li className='item' key={item.id}>
                     <input
                     type='checkbox'
+                    onChange={() => handleCheck(item.id)}
                     checked={item.checked}
                     />
                     <label>{item.item}</label>
