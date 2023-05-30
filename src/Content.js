@@ -1,17 +1,27 @@
 import React from 'react'
+import { useState } from 'react'
 
 function Content() {
-    const handleClick = () => {
-        console.log('You clicked it')
-    }
-    const handleClick2 = (name) => {
-        console.log(`${name} was clicked`)
-    }
+    const [items, setItems] = useState([
+        {
+            id:1,
+            checked: false,
+            item: 'One pound bag of cocoa'
+        },
+        {
+            id:2,
+            checked: false,
+            item: 'item2'
+        },
+        {
+            id: 3,
+            checked: false,
+            item: 'item3'
+        }
+    ]);
   return (
     <main>
-      <p>Hello</p>
-      <button onClick={handleClick}>Click It</button>
-      <button onClick={() => handleClick2('Click')}>Click It</button>
+
     </main>
   )
 }
