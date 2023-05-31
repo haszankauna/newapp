@@ -1,10 +1,9 @@
 import React from 'react'
 
-function Footer(length) {
-    const today = new Date();
+function Footer() {
   return (
     <footer>
-      <p>{length} List {length === 1 ? "item" : "items"} </p>
+      <p>&copy; Copyright 2023 </p>
     </footer>
   )
 }
